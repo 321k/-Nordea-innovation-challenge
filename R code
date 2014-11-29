@@ -1,0 +1,8 @@
+library(XML)
+
+client_id="b02154b0-894a-496e-9bbf-db6e3397bd91"
+host="https://nordea-api.icds.ibmcloud.com"
+path="/nordea/sb/customer/get?CustomerId="
+customer_id=1
+
+url=paste(host, path, customer_id, "&client_id=", client_id, sep="")
