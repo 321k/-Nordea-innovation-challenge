@@ -8,3 +8,8 @@ customer_id=1
 url=paste(host, path, customer_id, "&client_id=", client_id, sep="")
 
 url=paste(host, "/customer/get?", "getAllCustomerIds", "&client_id=", client_id, sep="")
+
+base_url="http://erikmobiletest.mybluemix.net/api/getAccount/"
+for(i in 1:10) temp[i]=getURL(paste(base_url, i, sep=""))
+
+
