@@ -18,7 +18,7 @@ json.object=list()
 customers=data.frame()
 
 start=1
-stop=100
+stop=1
 
 base_url="http://erikmobiletest.mybluemix.net/api/getAccount/"
 for(i in start:stop) json.string[i]=getURL(paste(base_url, i, sep=""))
@@ -29,3 +29,10 @@ for(i in 1:length(json.object)) {
     customers[i,j]=json.object[[i]][j]
   }
 }
+
+
+#All Branches copied from web page http://eriktesttest.mybluemix.net/#/apitester
+$.post("http://eriktesttest.mybluemix.net/api/test", {"route":"/location/getAllBranches?","clientId":"b02154b0-894a-496e-9bbf-db6e3397bd91","method":"GET"}, function(data){console.log(data)})
+#AllBranches=string()
+
+fromJSON(AllBranches)
