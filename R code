@@ -1,4 +1,7 @@
 library(XML)
+#library(rjson)
+library(RCurl)
+library(jsonlite)
 
 client_id="b02154b0-894a-496e-9bbf-db6e3397bd91"
 host="https://nordea-api.icds.ibmcloud.com/nordea/sb"
@@ -6,10 +9,23 @@ path="/customer/get?CustomerId="
 customer_id=1
 
 url=paste(host, path, customer_id, "&client_id=", client_id, sep="")
-
 url=paste(host, "/customer/get?", "getAllCustomerIds", "&client_id=", client_id, sep="")
 
+####
+
+json.string=vector()
+json.object=list()
+customers=data.frame()
+
+start=1
+stop=100
+
 base_url="http://erikmobiletest.mybluemix.net/api/getAccount/"
-for(i in 1:10) temp[i]=getURL(paste(base_url, i, sep=""))
+for(i in start:stop) json.string[i]=getURL(paste(base_url, i, sep=""))
+for(i in start:stop) json.object[[i]]=fromJSON(json.string[i])
 
-
+for(i in 1:length(json.object)) {
+  for(j in 1:length(json.object[[i]])) {
+    customers[i,j]=json.object[[i]][j]
+  }
+}
